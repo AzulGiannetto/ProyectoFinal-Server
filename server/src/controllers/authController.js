@@ -14,7 +14,7 @@ const authController = (People) => {
         user === null ||
     !(await bcrypt.compare(body.password, user.password))
       ) {
-        return res.status(httpStatus.UNAUTHORIZED).send('Invalid credentials')
+        return res.status(httpStatus.UNAUTHORIZED).send('The credentials are invalid')
       }
 
       const token = generateToken()

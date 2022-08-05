@@ -1,7 +1,6 @@
 const express = require('express')
 const People = require('./models/peopleModel')
 const Country = require('./models/countryModel')
-const peopleRouter = require('./routes/peopleRouter')(People)
 const countryRouter = require('./routes/countryRouter')(Country)
 const authRouter = require('./routes/authRouter')(People)
 const errorHandler = require('./middleware/errorHandler')
@@ -28,18 +27,18 @@ app.use((err, _, res, next) => {
   if (err.name === 'UnauthorizedError') {
     res.status(httpStatus.UNAUTHORIZED).json({
       error: err.name,
-      cause: 'Unauthorized. Missing or invalid token provided.'
+      cause: 'Unauthorized. The token is invalid.'
     })
   } else {
     next(err)
   }
 })
 
-app.use('/api', peopleRouter, countryRouter)
+app.use('/api', countryRouter)
 app.use('/', authRouter)
 
 app.use(errorHandler)
 
 app.listen(PORT, () => {
-  console.log('Server is running')
+  console.log('The server is running')
 })

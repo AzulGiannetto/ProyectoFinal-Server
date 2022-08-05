@@ -1,4 +1,5 @@
 const httpStatus = require('../helpers/httpStatus')
+// faltan cosas
 
 const countryController = (Country) => {
   const getAllCountries = async (req, res, next) => {
@@ -45,10 +46,13 @@ const countryController = (Country) => {
         },
         {
           $set: {
+            user: body.user,
             country: body.country,
             continent: body.continente,
             hemisphere: body.hemisphere,
-            language: body.language
+            language: body.language,
+            description: body.description,
+            imageUrl: body.imageUrl
           }
         }
       )

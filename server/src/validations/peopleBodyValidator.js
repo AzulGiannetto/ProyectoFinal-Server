@@ -30,10 +30,13 @@ const bodySchema = Joi.object({
 })
 
 const countryBodySchema = Joi.object({
+  user: Joi.string().required(),
   country: Joi.string().required(),
   continent: Joi.string().required(),
   hemisphere: Joi.string().required(),
-  language: Joi.string().required()
+  language: Joi.string().required(),
+  description: Joi.string().required(),
+  imageUrl: Joi.string().required()
 })
 
 module.exports = { paramsSchema, bodySchema, querySchema, countryBodySchema, countryQuerySchema }

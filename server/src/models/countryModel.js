@@ -8,7 +8,8 @@ const countryModel = new Schema({
   continent: { type: String, required: true },
   hemisphere: { type: String, required: true },
   language: { type: String, required: true },
-  description: { type: String, minLength: 5, maxLength: 400 }
+  description: { type: String, minLength: 5, maxLength: 400 },
+  imageUrl: { type: String, required: true }
 })
 
 module.exports = mongoose.model('Country', countryModel)

@@ -5,7 +5,7 @@ const ERROR_HANDLERS = {
       .send({
         error: err.name,
         cause: err.message,
-        message: 'No podes utilizar el mismo username, email o phone.'
+        message: 'Estas repitiendo un dato unico.'
       }),
   defaultError: (res, err) =>
     res.status(500).send({ error: err.name, cause: err.message })
