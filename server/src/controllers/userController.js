@@ -1,11 +1,11 @@
 const httpStatus = require('../helpers/httpStatus')
 
-const countryController = (Country) => {
-  const getAllCountries = async (req, res, next) => {
+const userController = (User) => {
+  const getAllUser = async (req, res, next) => {
     try {
       const { query } = req
 
-      const response = await Country.find(query)
+      const response = await User.find(query)
 
       return res.status(httpStatus.OK).json(response)
     } catch (err) {
@@ -13,25 +13,25 @@ const countryController = (Country) => {
     }
   }
 
-  const postCountry = async (req, res, next) => {
+  const postUser = async (req, res, next) => {
     try {
       const { body } = req
 
-      const country = await new Country(body)
+      const user = await new User(body)
 
-      await country.save()
+      await user.save()
 
-      res.status(httpStatus.CREATED).json(country)
+      res.status(httpStatus.CREATED).json(user)
     } catch (err) {
       next(err)
     }
   }
 
-  const putCountryById = async (req, res, next) => {
+  const putUserById = async (req, res, next) => {
     try {
       const { body, params } = req
 
-      const checkData = await Country.find({
+      const checkData = await User.find({
         _id: params.id
       })
 
@@ -39,19 +39,15 @@ const countryController = (Country) => {
         res.status(httpStatus.FORBIDDEN).send('No data found with the provided ID.')
       }
 
-      await Country.updateOne(
+      await User.updateOne(
         {
           _id: params.id
         },
         {
           $set: {
             user: body.user,
-            country: body.country,
-            continent: body.continente,
-            hemisphere: body.hemisphere,
-            language: body.language,
-            description: body.description,
-            imageUrl: body.imageUrl
+            email: body.email,
+            password: body.password
           }
         }
       )
@@ -62,11 +58,11 @@ const countryController = (Country) => {
     }
   }
 
-  const getCountryById = async (req, res, next) => {
+  const getUserById = async (req, res, next) => {
     try {
       const { params } = req
 
-      const response = await Country.findById(params.id)
+      const response = await User.findById(params.id)
 
       return res.status(httpStatus.OK).json(response)
     } catch (err) {
@@ -74,11 +70,11 @@ const countryController = (Country) => {
     }
   }
 
-  const deleteCountryById = async (req, res, next) => {
+  const deleteUserById = async (req, res, next) => {
     try {
       const { params } = req
 
-      await Country.findByIdAndDelete(params.id)
+      await User.findByIdAndDelete(params.id)
 
       return res.status(httpStatus.OK).send('Data successful deleted')
     } catch (err) {
@@ -87,12 +83,12 @@ const countryController = (Country) => {
   }
 
   return {
-    getAllCountries,
-    getCountryById,
-    postCountry,
-    putCountryById,
-    deleteCountryById
+    getAllUser,
+    getUserById,
+    postUser,
+    putUserById,
+    deleteUserById
   }
 }
 
-module.exports = countryController
+module.exports = userController
