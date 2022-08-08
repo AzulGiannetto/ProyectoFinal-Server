@@ -39,4 +39,22 @@ const countryBodySchema = Joi.object({
   imageUrl: Joi.string().required()
 })
 
-module.exports = { paramsSchema, bodySchema, querySchema, countryBodySchema, countryQuerySchema }
+const userParamsSchema =
+  Joi.object({
+    id: Joi.string().min(24).max(24).required()
+  })
+
+const userQuerySchema = Joi.alternatives().try(
+  Joi.object({
+    user: Joi.string().required()
+  }),
+  Joi.object({})
+)
+
+const userBodySchema = Joi.object({
+  username: Joi.string().min(6).max(16).required(),
+  email: Joi.string().email().required(),
+  password: Joi.string().required()
+})
+
+module.exports = { paramsSchema, bodySchema, querySchema, countryBodySchema, countryQuerySchema, userParamsSchema, userQuerySchema, userBodySchema }
