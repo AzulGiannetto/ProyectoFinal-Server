@@ -45,7 +45,7 @@ const userController = (User) => {
         },
         {
           $set: {
-            user: body.user,
+            username: body.username,
             email: body.email,
             password: body.password
           }

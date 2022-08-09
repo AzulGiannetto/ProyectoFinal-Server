@@ -18,12 +18,12 @@ require('./database/db')
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-// app.all(
-//   '/*',
-//   expressjwt({ secret: process.env.SECRET, algorithms: ['HS256'] }).unless({
-//     path: ['/auth/login', '/auth/register']
-//   })
-// )
+app.all(
+  '/*',
+  expressjwt({ secret: process.env.SECRET, algorithms: ['HS256'] }).unless({
+    path: ['/auth/login', '/auth/register']
+  })
+)
 
 app.use((err, _, res, next) => {
   if (err.name === 'UnauthorizedError') {
