@@ -53,6 +53,7 @@ const userQuerySchema = Joi.alternatives().try(
 
 const userBodySchema = Joi.object({
   username: Joi.string().min(6).max(16).required(),
+  profilePhoto: Joi.string(),
   email: Joi.string().email().required(),
   password: Joi.string().required()
 })

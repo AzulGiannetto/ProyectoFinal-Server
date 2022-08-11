@@ -46,6 +46,7 @@ const userController = (User) => {
         {
           $set: {
             username: body.username,
+            profilePhoto: body.profilePhoto,
             email: body.email,
             password: body.password
           }
