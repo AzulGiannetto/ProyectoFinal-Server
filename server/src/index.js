@@ -10,11 +10,12 @@ require('dotenv').config()
 const httpStatus = require('./helpers/httpStatus')
 const { expressjwt } = require('express-jwt')
 const PORT = process.env.PORT || 5000
-
+const cors = require('cors')
 const app = express()
 
 require('./database/db')
 
+app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
