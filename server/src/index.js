@@ -2,8 +2,10 @@ const express = require('express')
 const People = require('./models/peopleModel')
 const Country = require('./models/countryModel')
 const User = require('./models/userModel')
+const Creators = require('./models/creatorsModel')
 const countryRouter = require('./routes/countryRouter')(Country)
 const userRouter = require('./routes/userRouter')(User)
+const creatorsRouter = require('./routes/creatorsRouter')(Creators)
 const authRouter = require('./routes/authRouter')(People)
 const errorHandler = require('./middleware/errorHandler')
 require('dotenv').config()
@@ -36,7 +38,7 @@ app.use((err, _, res, next) => {
   }
 })
 
-app.use('/api', countryRouter, userRouter)
+app.use('/api', countryRouter, userRouter, creatorsRouter)
 app.use('/', authRouter)
 
 app.use(errorHandler)
