@@ -3,8 +3,8 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const peopleModel = new Schema({
-  firstName: { type: String, required: true, minLength: 3, maxLength: 30 },
-  lastName: { type: String, required: true, minLength: 3, maxLength: 30 },
+  firstname: { type: String, required: true, minLength: 3, maxLength: 30 },
+  // lastName: { type: String, required: true, minLength: 3, maxLength: 30 },
   username: {
     type: String,
     required: true,
@@ -13,9 +13,9 @@ const peopleModel = new Schema({
     unique: true
   },
   password: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  address: { type: String, required: true },
-  phone: { type: Number, required: true, unique: true }
+  email: { type: String, required: true, unique: true }
+  // address: { type: String, required: true },
+  // phone: { type: Number, required: true, unique: true }
 })
 
 module.exports = mongoose.model('People', peopleModel)
