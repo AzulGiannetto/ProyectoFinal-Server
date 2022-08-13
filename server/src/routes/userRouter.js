@@ -11,7 +11,7 @@ const router = (User) => {
 
   userRouter
     .route('/user')
-    .get(validator.query(userQuerySchema), getAllUser, postUser)
+    .get(validator.query(userQuerySchema), getAllUser)
     .post(validator.body(userBodySchema), postUser)
 
   userRouter
