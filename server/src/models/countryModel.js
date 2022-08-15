@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const countryModel = new Schema({
-  user: { type: String, required: true, minLength: 4, maxLength: 25, unique: true },
+  user: { type: String, required: true, minLength: 4, maxLength: 25 },
   // country: { type: String, required: true, unique: true },
   // continent: { type: String, required: true },
   // hemisphere: { type: String, required: true },
