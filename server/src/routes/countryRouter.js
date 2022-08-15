@@ -1,7 +1,7 @@
 const express = require('express')
 const countryController = require('../controllers/countryController')
 const validator = require('express-joi-validation').createValidator({})
-const { countryBodySchema, paramsSchema, countryQuerySchema } = require('../validations/peopleBodyValidator')
+const { countryBodySchema, paramsSchema, countryQuerySchema } = require('../validations/countryBodyValidator')
 
 const router = (Country) => {
   const countryRouter = express.Router()

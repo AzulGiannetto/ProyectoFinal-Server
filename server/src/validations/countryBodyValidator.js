@@ -1,5 +1,26 @@
 const Joi = require('joi')
 
+const countryQuerySchema = Joi.alternatives().try(
+  Joi.object({
+    country: Joi.string().required()
+  }),
+  Joi.object({})
+)
+
+const countryBodySchema = Joi.object({
+  user: Joi.string().required(),
+  // country: Joi.string().required(),
+  // continent: Joi.string().required(),
+  // hemisphere: Joi.string().required(),
+  // language: Joi.string().required(),
+  description: Joi.string().required(),
+  imageUrl: Joi.string().required()
+})
+
+const paramsSchema = Joi.object({
+  id: Joi.string().min(24).max(24).required()
+})
+
 const schema = Joi.object({
   user: Joi.string().required().min(4).max(25),
   // country: Joi.string().alphanum().required().trim(),
@@ -10,4 +31,4 @@ const schema = Joi.object({
   imageUrl: Joi.string().alphanum().required()
 })
 
-module.exports = schema
+module.exports = { schema, countryBodySchema, countryQuerySchema, paramsSchema }
