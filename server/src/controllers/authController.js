@@ -18,13 +18,13 @@ const authController = (People) => {
   const logIn = async (req, res, next) => {
     try {
       const { body } = req
-      const email = await People.findOne({
-        email: body.email
+      const username = await People.findOne({
+        username: body.username
       })
 
       if (
-        email === null ||
-        !(await bcrypt.compare(body.password, email.password))
+        username === null ||
+        !(await bcrypt.compare(body.password, username.password))
       ) {
         return res.status(httpStatus.UNAUTHORIZED).send('The credentials are invalid')
       }
@@ -79,6 +79,7 @@ const authController = (People) => {
         },
         {
           $set: {
+            firstname: body.firstname,
             username: body.username,
             description: body.description,
             profilePhoto: body.profilePhoto,

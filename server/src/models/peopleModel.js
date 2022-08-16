@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const peopleModel = new Schema({
-  // firstname: { type: String, required: true, minLength: 3, maxLength: 30 },
+  firstname: { type: String, required: true, minLength: 3, maxLength: 30 },
   // lastName: { type: String, required: true, minLength: 3, maxLength: 30 },
   username: { type: String, minLength: 3, maxLength: 30, unique: true },
   description: { type: String },

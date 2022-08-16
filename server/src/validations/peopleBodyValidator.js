@@ -13,6 +13,7 @@ const authQuerySchema = Joi.alternatives().try(
 )
 
 const authBodySchema = Joi.object({
+  firstname: Joi.string().required(),
   username: Joi.string().min(6).max(16),
   description: Joi.string(),
   profilePhoto: Joi.string(),
