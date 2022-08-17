@@ -2,19 +2,17 @@ const Joi = require('joi')
 
 const countryQuerySchema = Joi.alternatives().try(
   Joi.object({
-    country: Joi.string().required()
+    user: Joi.string().required()
+    // country: Joi.string().required()
   }),
   Joi.object({})
 )
 
 const countryBodySchema = Joi.object({
   user: Joi.string().required(),
-  // country: Joi.string().required(),
-  // continent: Joi.string().required(),
-  // hemisphere: Joi.string().required(),
-  // language: Joi.string().required(),
   description: Joi.string().required(),
-  imageUrl: Joi.string().required()
+  imageUrl: Joi.string().required(),
+  userImage: Joi.string().required()
 })
 
 const paramsSchema = Joi.object({
