@@ -47,8 +47,8 @@ const countryController = (Country) => {
           $set: {
             user: body.user,
             userImage: body.userImage,
-            description: body.description,
-            imageUrl: body.imageUrl
+            description: body.description
+            // imageUrl: body.imageUrl
           }
         }
       )

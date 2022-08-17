@@ -11,8 +11,7 @@ const countryQuerySchema = Joi.alternatives().try(
 const countryBodySchema = Joi.object({
   user: Joi.string().required(),
   description: Joi.string().required(),
-  imageUrl: Joi.string().required(),
-  userImage: Joi.string().required()
+  imageUrl: Joi.string().required()
 })
 
 const paramsSchema = Joi.object({
