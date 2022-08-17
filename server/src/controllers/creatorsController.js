@@ -1,11 +1,11 @@
 const httpStatus = require('../helpers/httpStatus')
 
-const countryController = (Country) => {
-  const getAllCountries = async (req, res, next) => {
+const creatorsController = (Creators) => {
+  const getAllCreators = async (req, res, next) => {
     try {
       const { query } = req
 
-      const response = await Country.find(query)
+      const response = await Creators.find(query)
 
       return res.status(httpStatus.OK).json(response)
     } catch (err) {
@@ -13,25 +13,25 @@ const countryController = (Country) => {
     }
   }
 
-  const postCountry = async (req, res, next) => {
+  const postCreator = async (req, res, next) => {
     try {
       const { body } = req
 
-      const country = await new Country(body)
+      const creators = await new Creators(body)
 
-      await country.save()
+      await creators.save()
 
-      res.status(httpStatus.CREATED).json(country)
+      res.status(httpStatus.CREATED).json(creators)
     } catch (err) {
       next(err)
     }
   }
 
-  const putCountryById = async (req, res, next) => {
+  const putCreatorById = async (req, res, next) => {
     try {
       const { body, params } = req
 
-      const checkData = await Country.find({
+      const checkData = await Creators.find({
         _id: params.id
       })
 
@@ -39,16 +39,16 @@ const countryController = (Country) => {
         res.status(httpStatus.FORBIDDEN).send('No data found with the provided ID.')
       }
 
-      await Country.updateOne(
+      await Creators.updateOne(
         {
           _id: params.id
         },
         {
           $set: {
-            user: body.user,
-            userImage: body.userImage,
-            description: body.description
-            // imageUrl: body.imageUrl
+            name: body.name,
+            gitUser: body.gitUser,
+            linkedIn: body.linkedIn,
+            photo: body.photo
           }
         }
       )
@@ -59,11 +59,11 @@ const countryController = (Country) => {
     }
   }
 
-  const getCountryById = async (req, res, next) => {
+  const getCreatorById = async (req, res, next) => {
     try {
       const { params } = req
 
-      const response = await Country.findById(params.id)
+      const response = await Creators.findById(params.id)
 
       return res.status(httpStatus.OK).json(response)
     } catch (err) {
@@ -71,11 +71,11 @@ const countryController = (Country) => {
     }
   }
 
-  const deleteCountryById = async (req, res, next) => {
+  const deleteCreatorById = async (req, res, next) => {
     try {
       const { params } = req
 
-      await Country.findByIdAndDelete(params.id)
+      await Creators.findByIdAndDelete(params.id)
 
       return res.status(httpStatus.OK).send('Data successful deleted')
     } catch (err) {
@@ -84,12 +84,8 @@ const countryController = (Country) => {
   }
 
   return {
-    getAllCountries,
-    getCountryById,
-    postCountry,
-    putCountryById,
-    deleteCountryById
+    getAllCreators, postCreator, putCreatorById, getCreatorById, deleteCreatorById
   }
 }
 
-module.exports = countryController
+module.exports = creatorsController
