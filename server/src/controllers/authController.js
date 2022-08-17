@@ -33,7 +33,8 @@ const authController = (People) => {
 
       return res.status(httpStatus.OK).json({
         status: 'OK',
-        token
+        token,
+        id: username._id
       })
     } catch (err) {
       next(err)
